@@ -1,88 +1,63 @@
-# Music Genre Classification and Similarity Analysis
+# UMAP Enhanced Clustering for Music Genre Classification - GROUP 1
 
 ## Project Overview
 
-This project focuses on music genre classification and similarity analysis using machine learning techniques. It processes audio files, extracts relevant features, and applies various data science methods to analyze and classify music genres.
+This project presents a novel approach to music genre classification using Uniform Manifold Approximation and Projection (UMAP) for dimensionality reduction and enhanced clustering. We extract a comprehensive set of audio features from music files and project them into a three-dimensional latent space, allowing for intuitive visualization and analysis of genre relationships.
 
-## Features
+## Key Features
 
-- Audio segment extraction
-- Feature extraction using librosa and TIVlib
-- Tabular dataset construction
-- Feature analysis
-- Dimensionality reduction using PCA
-- Latent space analysis
-- Genre-based clustering
-- Similarity analysis for new songs
-- Genre inference for new samples
+- Extracts 20 audio features using librosa and TIV libraries
+- Employs UMAP for dimensionality reduction to 3D space
+- Compares supervised and pre-clustering approaches
+- Provides interpretable results through 3D visualizations
+- Achieves effective classification of novel, out-of-distribution samples
 
-   ## Requirements
+## Methodology
 
-- Python
+1. **Feature Extraction**: We extract spectral, rhythmic, tonal, and energy-related features from audio files using librosa and TIV libraries.
+
+2. **Dimensionality Reduction**: UMAP is used to reduce the high-dimensional feature space to 3D, preserving both local and global structures.
+
+3. **Clustering Approaches**:
+   - Supervised: Uses target labels to guide the UMAP reduction
+   - Pre-clustering: Applies k-means clustering before UMAP reduction
+
+4. **Classification**: Nearest neighbor algorithm is used to classify new samples in the latent space.
+
+## Dataset
+
+We use the GTZAN "genres original" dataset, comprising 10 genres with 100 songs each, 30 seconds in length.
+
+## Results
+
+Our approach demonstrates effectiveness in classifying novel, out-of-distribution samples. The pre-clustering method shows better performance for music blending multiple genre elements, while the supervised approach excels for well-defined genre characteristics.
+
+## Feature Importance
+
+We analyze feature importance using random forest and mutual information classifiers. Top features include:
+
+1. Onset Strength Mean
+2. Percussive Variance
+3. Spectral Rolloff
+4. Spectral Bandwidth
+5. Spectral Centroid
+
+## Requirements
+
+- Python 3.x
 - librosa
+- numpy
+- pandas
 - TIVlib
 - scikit-learn
-- pandas
-- numpy
-- matplotlib
-
-## Installation
-
-```bash
-pip install librosa tivlib scikit-learn pandas numpy matplotlib
-```
+- UMAP-learn
 
 ## Usage
 
-1. Prepare your dataset:
-   - Organize audio files into folders by genre
-   - Ensure consistent audio format (e.g., .mp3, .wav)
+Detailed pipeline execution and code examples can be found in the accompanying Jupyter notebook.
 
-2. Run the main script:
-   ```bash
-   python music_analysis.py --data_path /path/to/your/dataset
-   ```
 
-3. Analyze the results in the output folder
+## Acknowledgements
 
-## Project Structure
-
-```
-.
-├── music_analysis.py
-├── utils/
-│   ├── audio_processing.py
-│   ├── feature_extraction.py
-│   └── data_analysis.py
-├── models/
-│   ├── dimensionality_reduction.py
-│   └── clustering.py
-├── data/
-│   └── processed/
-├── results/
-│   ├── features/
-│   ├── visualizations/
-│   └── models/
-└── README.md
-```
-
-## Workflow
-
-1. **Audio Segment Extraction**: Load each song and select a fixed-length segment.
-2. **Genre Labeling**: Save the folder name as the target feature (genre).
-3. **Feature Extraction**: Extract audio features using librosa and TIVlib.
-4. **Dataset Construction**: Create a tabular dataset using the extracted features.
-5. **Feature Analysis**: Apply various data science methods to analyze the features.
-6. **Dimensionality Reduction**: Reduce the feature space to 3D using PCA.
-7. **Latent Space Analysis**: Visualize and analyze the data in the latent space.
-8. **Clustering**: Cluster points in the latent space based on genre.
-9. **Similarity Analysis**: Analyze how new songs relate to the training data using clustering algorithms (KNN, DBSCAN).
-10. **Genre Inference**: Attempt to infer genres for new samples.
-
-## Output
-
-- Processed feature datasets
-- Visualizations of the latent space
-- Clustering results
-- Similarity analysis reports
-- Genre inference results for new samples
+- librosa library: https://librosa.org/
+- TIVlib: https://github.com/aframires/TIVlib
